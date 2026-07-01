@@ -1,7 +1,7 @@
 schema_version: 1
 
 context:
-  version: "0.8.3"
+  version: "0.8.4"
 
 package:
   name: melange
@@ -9,7 +9,7 @@ package:
 
 source:
   - url: https://github.com/pthm/melange/archive/refs/tags/v${{ version }}.tar.gz
-    sha256: 9504b8647b8446fb82e25bc47727e98cddf49b8f9dc8a6f803739e79b9588d94
+    sha256: 90577ee96e3cdb4677fa839c345127d93682f527651d5741bf8f5ef70142fc0c
   # go-licenses cannot classify go-localereader, so vendor its LICENSE here.
   - url: https://raw.githubusercontent.com/mattn/go-localereader/refs/heads/master/LICENSE
     sha256: dceede03550621e65ec7b79fcba87cf6dbb9d31132a8ae71a8fe8ceec0af7da3
