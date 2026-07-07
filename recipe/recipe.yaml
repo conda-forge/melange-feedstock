@@ -8,8 +8,8 @@ package:
   version: ${{ version }}
 
 source:
-  - url: https://github.com/pthm/melange/archive/refs/tags/v${{ version }}.tar.gz
-    sha256: 90577ee96e3cdb4677fa839c345127d93682f527651d5741bf8f5ef70142fc0c
+  - url: https://github.com/pthm/melange/archive/refs/tags/cmd/melange/v${{ version }}.tar.gz
+    sha256: c53cf94c97bc691fdddfb9b26aa8ce74182ec8beacc832f59108f00069a4211f
   # go-licenses cannot classify go-localereader, so vendor its LICENSE here.
   - url: https://raw.githubusercontent.com/mattn/go-localereader/refs/heads/master/LICENSE
     sha256: dceede03550621e65ec7b79fcba87cf6dbb9d31132a8ae71a8fe8ceec0af7da3
