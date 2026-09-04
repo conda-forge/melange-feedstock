@@ -1,15 +1,15 @@
 schema_version: 1
 
 context:
-  version: "0.8.6"
+  version: "0.9.4"
 
 package:
   name: melange
   version: ${{ version }}
 
 source:
-  - url: https://github.com/pthm/melange/archive/refs/tags/cmd/melange/v${{ version }}.tar.gz
-    sha256: a8dd75a4b191233545a6522e4c0f5aada71881a0896a38aba2bb0b388be05e10
+  - url: https://github.com/pthm/melange/archive/refs/tags/v${{ version }}.tar.gz
+    sha256: d3c009f04e2dcc4f3429b707e23a159c2dab3f99c71c3fc2a069e36d3f8caa56
   # go-licenses cannot classify go-localereader, so vendor its LICENSE here.
   - url: https://raw.githubusercontent.com/mattn/go-localereader/refs/heads/master/LICENSE
     sha256: dceede03550621e65ec7b79fcba87cf6dbb9d31132a8ae71a8fe8ceec0af7da3
@@ -18,15 +18,13 @@ source:
 build:
   number: 0
   script:
-    # cmd/melange is its own Go module, so build and inspect it from there.
-    - cd cmd/melange
-    # cmd/melange is this package's own module (covered by the top-level LICENSE)
+    # melange is this package's own module (covered by the top-level LICENSE)
     # and go-licenses cannot classify go-localereader (its LICENSE is vendored as
     # a source above), so both are ignored here.
-    - go-licenses save . --save_path ../../library_licenses --ignore github.com/pthm/melange/cmd/melange --ignore github.com/mattn/go-localereader
+    - go-licenses save . --save_path library_licenses --ignore github.com/pthm/melange --ignore github.com/mattn/go-localereader
     - if: unix
-      then: go build -v -ldflags "-s -w -X github.com/pthm/melange/lib/version.Version=${{ version }}" -o $PREFIX/bin/melange .
-      else: go build -v -ldflags "-s -w -X github.com/pthm/melange/lib/version.Version=${{ version }}" -o %LIBRARY_BIN%\melange.exe .
+      then: go build -v -ldflags "-s -w -X github.com/pthm/melange/internal/version.Version=${{ version }}" -o $PREFIX/bin/melange .
+      else: go build -v -ldflags "-s -w -X github.com/pthm/melange/internal/version.Version=${{ version }}" -o %LIBRARY_BIN%\melange.exe .
 
 requirements:
   build:
